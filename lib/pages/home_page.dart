@@ -1,10 +1,20 @@
+import 'package:demo_app/models/Product.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../widgets/bottom_bar.dart';
+import '../widgets/catalog.dart';
+import '../widgets/item_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final productData = Provider.of<ProductDataProvider>(context);
+
+
+
     return Scaffold(
       backgroundColor: Colors.amberAccent,
       body: SafeArea(
@@ -33,20 +43,34 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               Container(
-                child: const Text('Горизонтальный список карточек'),
+                padding: const EdgeInsets.all(5.0),
+                height: 290,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: productData.items.length,
+                    itemBuilder: (context, int index)  =>
+                      ChangeNotifierProvider.value(
+                        value: productData.items[index],
+                        child: ItemCard(),
+                      )
+                ),
               ),
+
               const Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Text('Каталог коктейлей'),
               ),
-              Container(
-                child: const Text('Список  катлогов'),
-              ),
+
+              
+              ...productData.items.map((value) {
+                return CatalogListTile(imgUrl: value.imgUrl);
+              }).toList(),
+              
             ],
           ),
         ),
-        //Bottom bar
       ),
+      bottomNavigationBar: BottomBar( ),
     );
   }
 }
