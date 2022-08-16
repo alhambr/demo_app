@@ -1,4 +1,5 @@
 import 'package:demo_app/models/Cart.dart';
+import 'package:demo_app/pages/cart_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -97,7 +98,9 @@ class BottomBar extends StatelessWidget {
                   Text(cartData.totalAmount.toStringAsFixed(2)),
                   IconButton(
                       onPressed: () {
-                        //@Todo Перейти в корзину
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => CartPage(),
+                        ));
                       },
                       icon: Icon(Icons.shopping_basket, color: Color(0xFF676E79),),
                   ),
