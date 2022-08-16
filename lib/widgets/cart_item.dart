@@ -1,6 +1,8 @@
 import 'package:demo_app/models/Cart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../pages/item_page.dart';
 class CartItem extends StatelessWidget {
 
   final cartData;
@@ -12,14 +14,21 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ListTile(
-        leading: Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15.0),
-            image: DecorationImage(
-              image: NetworkImage(cartData.cartItems.values.toList()[index].imgUrl),
-              fit: BoxFit.cover,
+        leading: InkWell(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => ItemPage(productId: cartData.cartItems.keys.toList()[index])
+            ));
+          },
+          child: Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              image: DecorationImage(
+                image: NetworkImage(cartData.cartItems.values.toList()[index].imgUrl),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),

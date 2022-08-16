@@ -3,6 +3,8 @@ import 'package:demo_app/pages/cart_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../pages/item_page.dart';
+
 class BottomBar extends StatelessWidget {
   const BottomBar({Key? key}) : super(key: key);
 
@@ -33,7 +35,9 @@ class BottomBar extends StatelessWidget {
                   tag: cartItems.values.toList()[index].imgUrl,
                   child: GestureDetector(
                     onTap: () {
-                      //@Todo навигация на страницу товара
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ItemPage(productId: cartItems.keys.toList()[index])
+                      ));
                     },
                     child: Stack(
                       alignment: Alignment.center,

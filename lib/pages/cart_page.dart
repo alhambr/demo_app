@@ -23,6 +23,7 @@ class CartPage extends StatelessWidget {
         child: Container(
           height: 100,
           width: double.infinity,
+          alignment: Alignment.center,
           child: Text('Корзина пустая ;('),
         ),
       )

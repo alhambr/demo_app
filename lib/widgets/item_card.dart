@@ -1,5 +1,6 @@
 import 'package:demo_app/models/Cart.dart';
 import 'package:demo_app/models/Product.dart';
+import 'package:demo_app/pages/item_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +25,9 @@ class ItemCard extends StatelessWidget {
         children: <Widget>[
           GestureDetector(
             onTap: () {
-              // @Todo  Навигация на страницу продукта
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ItemPage(productId: product.id)
+              ));
             },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
