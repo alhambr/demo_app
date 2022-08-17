@@ -1,3 +1,4 @@
+import 'package:demo_app/pages/catalog_page.dart';
 import 'package:flutter/material.dart';
 
 class CatalogListTile extends StatelessWidget {
@@ -9,7 +10,9 @@ class CatalogListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        //Навигация на страницу каталога
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => ItemCatalog(imgUrl: imgUrl),
+        ));
       },
       child: Container(
         padding: const EdgeInsets.all(10.0),
